@@ -12,6 +12,9 @@ const functions = require('firebase-functions');
 const express = require('express');
 const requestPromise = require('request-promise-native');
 const cors = require('cors');
+require('dotenv').config();
+
+const stockApiKey = process.env.STOCK_API_KEY;
 
 const app = express();
 
@@ -26,7 +29,7 @@ const getDataFromAPI = async (keyword) => {
 
 const getDataFromStockAPI = async (tikcerName) => {
   const result = await requestPromise(
-    `https://api.tiingo.com/tiingo/daily/${tikcerName}/prices?token=30db6bf2c3da3d5008e46f03541e28bb22991d57`
+    `https://api.tiingo.com/tiingo/daily/${tikcerName}/prices?token=${stockApiKey}`
   );
   return result;
 };
